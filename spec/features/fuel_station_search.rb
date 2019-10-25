@@ -1,14 +1,3 @@
-# The NREL alternate fuel stations nearest station API: https://developer.nrel.gov/docs/transportation/alt-fuel-stations-v1/nearest/
-# The Google Directions API: https://developers.google.com/maps/documentation/directions/start
-# We will be searching for the nearest electric charging station to Turing.
-
-#
-# I should also see:
-# - the distance of the nearest station
-# - the travel time from Turing to that fuel station (should be 0.1 miles)
-# - The HTML direction instructions to get to that fuel station
-#   "Head <b>southeast</b> on <b>17th St</b> toward <b>Larimer St</b>"
-
 require 'rails_helper'
 
 describe 'Fuel Station Search Endpoint' do
@@ -33,7 +22,6 @@ describe 'Fuel Station Search Endpoint' do
 
     within('.Google') do
       expect(page).to have_content('Distance: 0.1 mi')
-      expect(page).to have_content('Travel Duration: 1 min')
       expect(page).to have_content('Travel Duration: 1 min')
       expect(page).to have_css('.html_instructions')
     end
