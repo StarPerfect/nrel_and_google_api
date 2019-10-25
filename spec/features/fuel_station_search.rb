@@ -1,20 +1,7 @@
 # The NREL alternate fuel stations nearest station API: https://developer.nrel.gov/docs/transportation/alt-fuel-stations-v1/nearest/
 # The Google Directions API: https://developers.google.com/maps/documentation/directions/start
 # We will be searching for the nearest electric charging station to Turing.
-#
-# As a user
-# When I visit "/"
-# And I select "Turing" form the start location drop down (Note: Use the existing search form)
-# And I click "Find Nearest Station"
-# Then I should be on page "/search"
-# Then I should see the closest electric fuel station to me.
-#
-# For that station I should see
-# - Name
-# - Address
-# - Fuel Type
-# - Distance
-# - Access Times
+
 #
 # I should also see:
 # - the distance of the nearest station
@@ -42,6 +29,13 @@ describe 'Fuel Station Search Endpoint' do
       expect(page).to have_content('80202')
       expect(page).to have_content('ELEC')
       expect(page).to have_content('Not Specified')
+    end
+
+    within('.Google') do
+      expect(page).to have_content('Distance: 0.1 mi')
+      expect(page).to have_content('Travel Duration: 1 min')
+      expect(page).to have_content('Travel Duration: 1 min')
+      expect(page).to have_css('.html_instructions')
     end
   end
 end
