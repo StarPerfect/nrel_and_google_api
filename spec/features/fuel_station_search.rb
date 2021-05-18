@@ -27,3 +27,17 @@ describe 'Fuel Station Search Endpoint' do
     end
   end
 end
+
+=begin
+  From the forms location response,
+  take the address of the origin point
+  return the closest fuel station 
+
+  Request to NREL - Return nearest fuel station| lat long? address? 
+
+  response of NREL = destination of our directions
+  response of the form = origin of our directions
+
+  Google Directions API | headers? body? 
+
+=end
