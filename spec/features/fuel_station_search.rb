@@ -8,6 +8,7 @@ describe 'Fuel Station Search Endpoint' do
 
     select 'Turing'
     click_button 'Find Nearest Station'
+    
 
     expect(current_path).to eq(search_path)
     within('.NREL') do

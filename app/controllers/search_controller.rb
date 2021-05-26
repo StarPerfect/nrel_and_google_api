@@ -1,12 +1,18 @@
 class SearchController < ApplicationController
   def index
     # Input validation / type checking 
-
-    origin_point = params[:location]
-    response = Faraday.get("https://developer.nrel.gov/api/alt-fuel-stations/v1/nearest.json?api_key=#{ENV['NREL_API_KEY']}&location=#{origin_point}&fuel_type=ELEC&limit=1")
-    json = JSON.parse(response.body, symbolize_names: true)
     
-    directions_response = Faraday.get({origin_point: origin_point, lat:json[:latitude], lng:json[:longitude]})
+    origin_point = location_params[:location]
+    station_result = NrelService.get_stations(origin_point)
+    direction_result = GoogleService.get_directions.get({origin_point: origin_point, 
+                                                            lat: station_result[:latitude], 
+                                                            lng: station_result[:longitude]})
     binding.pry
+  end
+
+  private
+
+  def location_params
+    params.permit(:location)
   end
 end
