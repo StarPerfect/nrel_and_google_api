@@ -6,7 +6,7 @@ class SearchController < ApplicationController
     response = Faraday.get("https://developer.nrel.gov/api/alt-fuel-stations/v1/nearest.json?api_key=#{ENV['NREL_API_KEY']}&location=#{origin_point}&fuel_type=ELEC&limit=1")
     json = JSON.parse(response.body, symbolize_names: true)
     
-    directions_response = Faraday.get("https://maps.googleapis.com/maps/api/directions/json?origin=#{origin_point}&destination=#{json[:latitude]},#{json[:longitude]}&key=#{ENV['GOOGLE_API_KEY']}")
+    directions_response = Faraday.get({origin_point: origin_point, lat:json[:latitude], lng:json[:longitude]})
     binding.pry
   end
 end
